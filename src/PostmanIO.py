@@ -33,13 +33,12 @@ class PostmanIO:
     def change_working_directory(path):
         try:
             os.chdir(path)
-            print("Working directory has been changed to: " + path)
-        except OSError:
-            print("Can't change the Current Working Directory")
+            print("Working Directory changed to: " + path)
+        except FileNotFoundError:
+            print("Path not Found")
 
     def create_log_file(self):
-        self.change_working_directory(os.path.join(os.getcwd(), "../LogFiles"))
-        my_directory = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+        my_directory = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%d-%m-%Y_%H-%M'))
         os.makedirs(my_directory)
         self.change_working_directory(my_directory)
         return my_directory

@@ -1,12 +1,16 @@
 import threading
 import os
 
+from src.PostmanIO import PostmanIO
+
 
 class ConcurrentRun:
     currentWorkspaceObject = ()
     results = []
 
     def __init__(self, api_key, collections_list, environments_list):
+        self.io_control = PostmanIO()
+        self.io_control.change_working_directory("C:/Users/aaldridge/PycharmProjects/post_office/LogFiles")
         self.api_key = api_key
         self.currentWorkspaceObject = (collections_list, environments_list)
         self.execute_each_collection_sequentially_but_concurrent_across_environments(self.currentWorkspaceObject)
@@ -17,7 +21,7 @@ class ConcurrentRun:
 
     @staticmethod
     def build_execution_phrase(output_filename, collection_uid, environment_uid, api_key):
-        execute_phrase_preamble = "start /b newman run --reporters cli,json --reporter-json-export"
+        execute_phrase_preamble = "newman run --reporters cli,json --reporter-json-export"
         execute_phrase_collection = "https://api.getpostman.com/collections/"
         execute_phrase_environment = "-e https://api.getpostman.com/environments/"
         execute_phrase_api_key = "?apikey="
@@ -32,30 +36,15 @@ class ConcurrentRun:
 
         for collection in collections:
             print("Starting a batch")
-            counter = 0
-
-            th0 = None
-            th1 = None
-            th2 = None
 
             for environment in environments:
+                self.io_control.create_log_file()
                 output_file_name = collection['name'] + "_" + environment['name']
                 self.results.append(output_file_name + ".json")
                 execution_phrase = self.build_execution_phrase(output_file_name, collection['uid'], environment['uid'],
                                                                self.api_key)
+                t = threading.Thread(name=output_file_name, target=self.run_command(execution_phrase))
+                t.start()
+                t.join()
 
-                if counter == 0:
-                    th0 = threading.Thread(name=output_file_name, target=self.run_command(execution_phrase))
-                    th0.start()
-                if counter == 1:
-                    th1 = threading.Thread(name=output_file_name, target=self.run_command(execution_phrase))
-                    th1.start()
-                if counter == 2:
-                    th2 = threading.Thread(name=output_file_name, target=self.run_command(execution_phrase))
-                    th2.start()
-                counter += 1
-
-            th0.join()
-            th1.join()
-            th2.join()
             print("Done with that batch")
