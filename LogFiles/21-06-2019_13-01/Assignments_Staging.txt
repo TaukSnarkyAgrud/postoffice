@@ -1,0 +1,277 @@
+newman
+
+Assignments
+
+□ Authorization
+└ Get Token
+  POST https://login.staging-ps.com/connect/token [200 OK, 1.09KB, 299ms]
+  √  Status code is 200
+
+□ Setup / Build Up / Create Facility (If Necessary) / Patient
+└ Check Patient Facility
+  GET https://queries-patient.staging-ps.com/api/Facility [200 OK, 8.05KB, 1814ms]
+  √  Status code is 200
+  √  Patient Facility created. Skipping to CTC Facility
+
+Attempting to set next request to Check CTC Facility
+
+□ Setup / Build Up / Create Facility (If Necessary) / CTC
+└ Check CTC Facility
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/api/Facility [200 OK, 2.35KB, 852ms]
+  √  Status code is 200
+  √  CTC Facility created. Skipping to Patient Sourcesystem
+
+Attempting to set next request to Check Patient SourceSystem
+
+□ Setup / Build Up / Create Source System (If Necessary) / Patient
+└ Check Patient SourceSystem
+  GET https://queries-patient.staging-ps.com/tenants/HSO-M74L70D0L/api/SourceSystem [200 OK, 405B, 67ms]
+  √  Status code is 200
+  √  Patient SourceSystem created. Skipping to CTC SourceSystem
+
+Attempting to set next request to Check CTC SourceSystem
+
+□ Setup / Build Up / Create Source System (If Necessary) / CTC
+└ Check CTC SourceSystem
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/AssignmentProfile/SourceSystemSearch [200 OK, 526B, 69ms]
+  √  Status code is 200
+
+Attempting to set next request to Create Unit Filter 1E
+
+□ Setup / Build Up / Create Unit Filters
+└ Create Unit Filter 1E
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/UnitFilter [200 OK, 106B, 733ms]
+  √  Status code is 200
+
+□ Setup / Build Up / Create Role Profiles / 1E
+└ Create Assignment Profile
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/AssignmentProfile/Add [200 OK, 106B, 173ms]
+  √  Status code is 200
+
+└ Create Role Profile Nurse Location
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/AssignmentProfile/AddRoleProfile [200 OK, 106B, 146ms]
+  √  Status code is 200
+
+└ Create Role Profile Nurse Assistant Location
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/AssignmentProfile/AddRoleProfile [200 OK, 106B, 139ms]
+  √  Status code is 200
+
+└ Create Role Profile PT Tech Unit
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/AssignmentProfile/AddRoleProfile [200 OK, 106B, 140ms]
+  √  Status code is 200
+
+□ Setup / Build Up / Assign Locations
+└ Get EntityMap LocationTypeId
+  GET https://entitymap.staging-ps.com/api/EntityTypes?name=Location [200 OK, 376B, 72ms]
+  √  Status code is 200
+  √  Location Returned From EntityMap
+
+└ Get EntityMap Location Mappings
+  GET https://entitymap.staging-ps.com/api/EntityTypes/f22827eb-a781-453a-84ef-6d91d5f8d3e2/Mappings?externalSourceId=45adb69b-d68f-4d71-b523-aa0301503ab0 [200 OK, 16.31KB, 35ms]
+  √  Status code is 200
+  √  Mappings Returned From EntityMap
+
+└ Assign Locations
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/CareTeamMembers/AssignLocations [200 OK, 106B, 323ms]
+  √  Status code is 200
+
+□ Regression Tests / Query Patients Backdoor
+└ Admit Patient
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/Admit [200 OK, 115B, 5.8s]
+  √  Status code is 200
+
+└ CTC Query Unit Search
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/UnitSearch?searchText=1E&useAssignmentProfile=true [200 OK, 4.81KB, 1317ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  No Telemetry Tech
+  √  Correct Nurse Magnitude
+  √  Correct Nurse Assistant Magnitude
+  √  One attending physician
+
+└ CTC Query Unit Search Without Assignment Profile
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/UnitSearch?searchText=1E&useAssignmentProfile=false [200 OK, 5.34KB, 83ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  No Telemetry Tech
+  √  Correct Nurse Magnitude
+  √  Correct Nurse Assistant Magnitude
+  √  One attending physician
+
+└ Cancel Admit
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/CancelAdmit [200 OK, 115B, 490ms]
+  √  Status code is 200
+
+□ Regression Tests / Replace Encounter Assignments
+└ Admit Patient
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/Admit [200 OK, 115B, 158ms]
+  √  Status code is 200
+
+└ Query Patient
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/Details?mrn=MRN-PSEHAssgn&accountNumber=ACT-1234 [200 OK, 2.54KB, 150ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  One attending physician
+
+└ Replace Assignments
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/EncounterAssignments/Replace [200 OK, 106B, 81ms]
+  √  Status code is 200
+
+└ Query Patient
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/Details?mrn=MRN-PSEHAssgn&accountNumber=ACT-1234 [200 OK, 2.53KB, 83ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  One consulting physician
+
+└ Cancel Admit
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/CancelAdmit [200 OK, 115B, 183ms]
+  √  Status code is 200
+
+□ Regression Tests / Patient / Patient Location/Transfer
+└ Admit Patient Unknown Location
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/Admit [200 OK, 115B, 256ms]
+  √  Status code is 200
+
+└ CTC Details - Not Found
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/Details?accountNumber=ACT-1234 [200 OK, 155B, 123ms]
+  √  Status code is 200
+  √  CTC Unknown Location - Not Found
+
+└ Patient Details - Found
+  GET https://queries-patient.staging-ps.com/tenants/HSO-M74L70D0L/api/Patient/Details?accountNumber=ACT-1234 [200 OK, 944B, 36ms]
+  √  Status code is 200
+  √  Patient Unknown Location - Found
+  √  LocationId null
+  √  UnitId null
+
+└ Transfer Patient Known Location
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/Transfer [200 OK, 115B, 324ms]
+  √  Status code is 200
+
+└ CTC EncounterId - Now Found - Unit Filter Doesn't apply to Query with EncounterId
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/518f9579-6dd9-4fba-829c-cab90cca93a6 [200 OK, 1.46KB, 170ms]
+  √  Status code is 200
+  √  Patient Found
+
+└ CTC Details - Not Found
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/Details?accountNumber=ACT-1234 [200 OK, 155B, 56ms]
+  √  Status code is 200
+  √  CTC Unknown Location - Not Found
+
+└ Patient EncounterId - Found
+  GET https://queries-patient.staging-ps.com/tenants/HSO-M74L70D0L/api/Patient/518f9579-6dd9-4fba-829c-cab90cca93a6 [200 OK, 1009B, 36ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId not null
+
+└ Transfer Patient CTC Queryable Location
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/Transfer [200 OK, 115B, 186ms]
+  √  Status code is 200
+
+└ CTC EncounterId - Found
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/518f9579-6dd9-4fba-829c-cab90cca93a6 [200 OK, 3.06KB, 92ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId undefined
+  √  CTC Assignments
+
+└ CTC Details - Found
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/PatientEncounter/Details?accountNumber=ACT-1234 [200 OK, 3.07KB, 85ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId undefined
+  √  CTC Assignments
+
+└ Patient EncounterId - Still Found
+  GET https://queries-patient.staging-ps.com/tenants/HSO-M74L70D0L/api/Patient/518f9579-6dd9-4fba-829c-cab90cca93a6 [200 OK, 1010B, 32ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId not null
+
+└ Cancel Admit
+  POST https://commands-integrations-ctc.staging-ps.com/HSO-M74L70D0L/Patients/CancelAdmit [200 OK, 115B, 133ms]
+  √  Status code is 200
+
+□ Tear Down / CancelAdmit Patients
+└ Get Facility
+  GET https://queries-patient.staging-ps.com/api/Facility [200 OK, 8.05KB, 425ms]
+
+└ Get Source Systems
+  GET https://queries-patient.staging-ps.com/tenants/HSO-M74L70D0L/api/SourceSystem [200 OK, 405B, 23ms]
+  √  Status code is 200
+
+└ Get All Patients
+  GET https://queries-patient.staging-ps.com/tenants/HSO-M74L70D0L/api/Patient/FullSearch [200 OK, 173B, 70ms]
+  √  Status code is 200
+
+Attempting to set next request to Unassign Locations
+
+□ Tear Down / Unassign Locations
+└ Unassign Locations
+  POST https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/LocationAssignments/Replace [200 OK, 106B, 227ms]
+  √  Status code is 200
+
+□ Tear Down / Delete Role Profiles
+└ Get All Role Profiles
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/AssignmentProfile/UnitIdSearch?unitId={{unitId1E}} [200 OK, 157B, 52ms]
+  √  Status code is 200
+
+Attempting to set next request to Get All Unit Filters
+
+□ Tear Down / Delete Unit Filters
+└ Get All Unit Filters
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/UnitFilter [200 OK, 271B, 44ms]
+  √  Status code is 200
+
+Attempting to set next request to Delete Unit Filter
+
+└ Delete Unit Filter
+  DELETE https://ctcollaboration.staging-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74L70D0L/api/UnitFilter/153686f2-8586-4a40-a047-60975869539d [200 OK, 106B, 115ms]
+  √  Status code is 200
+
+Attempting to set next request to Get All Unit Filters
+
+└ Get All Unit Filters
+  GET https://ctcollaboration.staging-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74L70D0L/api/UnitFilter [200 OK, 155B, 53ms]
+  √  Status code is 200
+
+Attempting to set next request to Get Patient Facility
+
+□ Tear Down / Delete Facility / Patient
+└ Get Patient Facility
+  GET https://queries-patient.staging-ps.com/api/Facility [200 OK, 8.05KB, 446ms]
+  √  Status code is 200
+
+Attempting to set next request to Cleanup tmp environment variables
+
+→ Cleanup tmp environment variables
+  GET https://postman-echo.com/get?test=InternetWorks [200 OK, 627B, 127ms]
+  √  Status code is 200
+
+┌─────────────────────────┬────────────────────┬───────────────────┐
+│                         │           executed │            failed │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              iterations │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│                requests │                 44 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│            test-scripts │                 44 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│      prerequest-scripts │                  2 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              assertions │                 86 │                 0 │
+├─────────────────────────┴────────────────────┴───────────────────┤
+│ total run duration: 19.7s                                        │
+├──────────────────────────────────────────────────────────────────┤
+│ total data received: 68.24KB (approx)                            │
+├──────────────────────────────────────────────────────────────────┤
+│ average response time: 371ms [min: 23ms, max: 5.8s, s.d.: 900ms] │
+└──────────────────────────────────────────────────────────────────┘

@@ -7,6 +7,7 @@ from src.PostmanIO import PostmanIO
 class ConcurrentRun:
     currentWorkspaceObject = ()
     results = []
+    current_log_directory = None
 
     def __init__(self, api_key, collections_list, environments_list):
         self.io_control = PostmanIO()
@@ -14,6 +15,7 @@ class ConcurrentRun:
         self.api_key = api_key
         self.currentWorkspaceObject = (collections_list, environments_list)
         self.execute_each_collection_sequentially_but_concurrent_across_environments(self.currentWorkspaceObject)
+        self.log_interpreter()
 
     @staticmethod
     def run_command(cmd):
@@ -34,11 +36,11 @@ class ConcurrentRun:
         collections = workspace[0]
         environments = workspace[1]
 
+        self.current_log_directory = self.io_control.create_log_file()
         for collection in collections:
             print("Starting a batch")
 
             for environment in environments:
-                self.io_control.create_log_file()
                 output_file_name = collection['name'] + "_" + environment['name']
                 self.results.append(output_file_name + ".json")
                 execution_phrase = self.build_execution_phrase(output_file_name, collection['uid'], environment['uid'],
@@ -48,3 +50,21 @@ class ConcurrentRun:
                 t.join()
 
             print("Done with that batch")
+
+    def log_interpreter(self):
+        print("Interpreting run: ...")
+        collection_failures = 0
+        for file in self.results:
+            ingest = PostmanIO()
+            ingest.import_from_json(".\\" + file)
+            if not ingest.content["run"]["failures"]:
+                print(file + " had no failures")
+            else:
+                collection_failures += 1
+        print("\n\n--------------------------------------RESULTS--------------------------------------")
+        print(self.current_log_directory)
+        if collection_failures == 0:
+            print("\n\nALL COLLECTIONS PASS!!")
+        else:
+            print("\n\nFailures detected")
+        pass

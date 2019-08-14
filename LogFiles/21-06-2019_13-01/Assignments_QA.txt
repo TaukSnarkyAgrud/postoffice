@@ -1,0 +1,277 @@
+newman
+
+Assignments
+
+□ Authorization
+└ Get Token
+  POST https://login.atl.qa-ps.com/connect/token [200 OK, 1.19KB, 204ms]
+  √  Status code is 200
+
+□ Setup / Build Up / Create Facility (If Necessary) / Patient
+└ Check Patient Facility
+  GET https://queries-patient.atl.qa-ps.com/api/Facility [200 OK, 7.11KB, 476ms]
+  √  Status code is 200
+  √  Patient Facility created. Skipping to CTC Facility
+
+Attempting to set next request to Check CTC Facility
+
+□ Setup / Build Up / Create Facility (If Necessary) / CTC
+└ Check CTC Facility
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/api/Facility [200 OK, 4.71KB, 140ms]
+  √  Status code is 200
+  √  CTC Facility created. Skipping to Patient Sourcesystem
+
+Attempting to set next request to Check Patient SourceSystem
+
+□ Setup / Build Up / Create Source System (If Necessary) / Patient
+└ Check Patient SourceSystem
+  GET https://queries-patient.atl.qa-ps.com/tenants/HSO-M74JAD0K6/api/SourceSystem [200 OK, 357B, 67ms]
+  √  Status code is 200
+  √  Patient SourceSystem created. Skipping to CTC SourceSystem
+
+Attempting to set next request to Check CTC SourceSystem
+
+□ Setup / Build Up / Create Source System (If Necessary) / CTC
+└ Check CTC SourceSystem
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/AssignmentProfile/SourceSystemSearch [200 OK, 341B, 36ms]
+  √  Status code is 200
+
+Attempting to set next request to Create Unit Filter 1E
+
+□ Setup / Build Up / Create Unit Filters
+└ Create Unit Filter 1E
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/UnitFilter [200 OK, 106B, 73ms]
+  √  Status code is 200
+
+□ Setup / Build Up / Create Role Profiles / 1E
+└ Create Assignment Profile
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/AssignmentProfile/Add [200 OK, 106B, 72ms]
+  √  Status code is 200
+
+└ Create Role Profile Nurse Location
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/AssignmentProfile/AddRoleProfile [200 OK, 106B, 79ms]
+  √  Status code is 200
+
+└ Create Role Profile Nurse Assistant Location
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/AssignmentProfile/AddRoleProfile [200 OK, 106B, 82ms]
+  √  Status code is 200
+
+└ Create Role Profile PT Tech Unit
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/AssignmentProfile/AddRoleProfile [200 OK, 106B, 116ms]
+  √  Status code is 200
+
+□ Setup / Build Up / Assign Locations
+└ Get EntityMap LocationTypeId
+  GET https://entitymap.atl.qa-ps.com/api/EntityTypes?name=Location [200 OK, 351B, 186ms]
+  √  Status code is 200
+  √  Location Returned From EntityMap
+
+└ Get EntityMap Location Mappings
+  GET https://entitymap.atl.qa-ps.com/api/EntityTypes/be1b7b6c-c51b-e711-80e0-0050568719f4/Mappings?externalSourceId=6ccdf7ab-433a-4258-bc75-aa00012c88eb [200 OK, 16.31KB, 56ms]
+  √  Status code is 200
+  √  Mappings Returned From EntityMap
+
+└ Assign Locations
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/CareTeamMembers/AssignLocations [200 OK, 106B, 105ms]
+  √  Status code is 200
+
+□ Regression Tests / Query Patients Backdoor
+└ Admit Patient
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/Admit [200 OK, 115B, 657ms]
+  √  Status code is 200
+
+└ CTC Query Unit Search
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/UnitSearch?searchText=1E&useAssignmentProfile=true [200 OK, 4.81KB, 302ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  No Telemetry Tech
+  √  Correct Nurse Magnitude
+  √  Correct Nurse Assistant Magnitude
+  √  One attending physician
+
+└ CTC Query Unit Search Without Assignment Profile
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/UnitSearch?searchText=1E&useAssignmentProfile=false [200 OK, 5.34KB, 136ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  No Telemetry Tech
+  √  Correct Nurse Magnitude
+  √  Correct Nurse Assistant Magnitude
+  √  One attending physician
+
+└ Cancel Admit
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/CancelAdmit [200 OK, 115B, 97ms]
+  √  Status code is 200
+
+□ Regression Tests / Replace Encounter Assignments
+└ Admit Patient
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/Admit [200 OK, 115B, 271ms]
+  √  Status code is 200
+
+└ Query Patient
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/Details?mrn=MRN-PSEHAssgn&accountNumber=ACT-1234 [200 OK, 2.54KB, 114ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  One attending physician
+
+└ Replace Assignments
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/EncounterAssignments/Replace [200 OK, 106B, 72ms]
+  √  Status code is 200
+
+└ Query Patient
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/Details?mrn=MRN-PSEHAssgn&accountNumber=ACT-1234 [200 OK, 2.53KB, 112ms]
+  √  Status code is 200
+  √  One patient
+  √  Three assigned care team members
+  √  One consulting physician
+
+└ Cancel Admit
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/CancelAdmit [200 OK, 115B, 252ms]
+  √  Status code is 200
+
+□ Regression Tests / Patient / Patient Location/Transfer
+└ Admit Patient Unknown Location
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/Admit [200 OK, 115B, 288ms]
+  √  Status code is 200
+
+└ CTC Details - Not Found
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/Details?accountNumber=ACT-1234 [200 OK, 155B, 93ms]
+  √  Status code is 200
+  √  CTC Unknown Location - Not Found
+
+└ Patient Details - Found
+  GET https://queries-patient.atl.qa-ps.com/tenants/HSO-M74JAD0K6/api/Patient/Details?accountNumber=ACT-1234 [200 OK, 944B, 38ms]
+  √  Status code is 200
+  √  Patient Unknown Location - Found
+  √  LocationId null
+  √  UnitId null
+
+└ Transfer Patient Known Location
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/Transfer [200 OK, 115B, 133ms]
+  √  Status code is 200
+
+└ CTC EncounterId - Now Found - Unit Filter Doesn't apply to Query with EncounterId
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/89243157-f072-42d6-a01c-f441f879a477 [200 OK, 1.47KB, 105ms]
+  √  Status code is 200
+  √  Patient Found
+
+└ CTC Details - Not Found
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/Details?accountNumber=ACT-1234 [200 OK, 155B, 54ms]
+  √  Status code is 200
+  √  CTC Unknown Location - Not Found
+
+└ Patient EncounterId - Found
+  GET https://queries-patient.atl.qa-ps.com/tenants/HSO-M74JAD0K6/api/Patient/89243157-f072-42d6-a01c-f441f879a477 [200 OK, 1009B, 41ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId not null
+
+└ Transfer Patient CTC Queryable Location
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/Transfer [200 OK, 115B, 154ms]
+  √  Status code is 200
+
+└ CTC EncounterId - Found
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/89243157-f072-42d6-a01c-f441f879a477 [200 OK, 3.07KB, 116ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId undefined
+  √  CTC Assignments
+
+└ CTC Details - Found
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/PatientEncounter/Details?accountNumber=ACT-1234 [200 OK, 3.07KB, 111ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId undefined
+  √  CTC Assignments
+
+└ Patient EncounterId - Still Found
+  GET https://queries-patient.atl.qa-ps.com/tenants/HSO-M74JAD0K6/api/Patient/89243157-f072-42d6-a01c-f441f879a477 [200 OK, 1010B, 32ms]
+  √  Status code is 200
+  √  Patient known Location - Found
+  √  LocationId not null
+  √  UnitId not null
+
+└ Cancel Admit
+  POST https://commands-integrations-ctc.atl.qa-ps.com/HSO-M74JAD0K6/Patients/CancelAdmit [200 OK, 115B, 134ms]
+  √  Status code is 200
+
+□ Tear Down / CancelAdmit Patients
+└ Get Facility
+  GET https://queries-patient.atl.qa-ps.com/api/Facility [200 OK, 7.11KB, 26ms]
+
+└ Get Source Systems
+  GET https://queries-patient.atl.qa-ps.com/tenants/HSO-M74JAD0K6/api/SourceSystem [200 OK, 357B, 22ms]
+  √  Status code is 200
+
+└ Get All Patients
+  GET https://queries-patient.atl.qa-ps.com/tenants/HSO-M74JAD0K6/api/Patient/FullSearch [200 OK, 173B, 31ms]
+  √  Status code is 200
+
+Attempting to set next request to Unassign Locations
+
+□ Tear Down / Unassign Locations
+└ Unassign Locations
+  POST https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/LocationAssignments/Replace [200 OK, 106B, 169ms]
+  √  Status code is 200
+
+□ Tear Down / Delete Role Profiles
+└ Get All Role Profiles
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/AssignmentProfile/UnitIdSearch?unitId={{unitId1E}} [200 OK, 157B, 37ms]
+  √  Status code is 200
+
+Attempting to set next request to Get All Unit Filters
+
+□ Tear Down / Delete Unit Filters
+└ Get All Unit Filters
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/UnitFilter [200 OK, 271B, 35ms]
+  √  Status code is 200
+
+Attempting to set next request to Delete Unit Filter
+
+└ Delete Unit Filter
+  DELETE https://ctc.atl.qa-ps.com/CareTeamCollaborationCommands/tenants/HSO-M74JAD0K6/api/UnitFilter/a02ab46c-02ff-496b-b139-9463d387538a [200 OK, 106B, 37ms]
+  √  Status code is 200
+
+Attempting to set next request to Get All Unit Filters
+
+└ Get All Unit Filters
+  GET https://ctc.atl.qa-ps.com/CareTeamCollaborationQueries/tenants/HSO-M74JAD0K6/api/UnitFilter [200 OK, 155B, 35ms]
+  √  Status code is 200
+
+Attempting to set next request to Get Patient Facility
+
+□ Tear Down / Delete Facility / Patient
+└ Get Patient Facility
+  GET https://queries-patient.atl.qa-ps.com/api/Facility [200 OK, 7.11KB, 26ms]
+  √  Status code is 200
+
+Attempting to set next request to Cleanup tmp environment variables
+
+→ Cleanup tmp environment variables
+  GET https://postman-echo.com/get?test=InternetWorks [200 OK, 619B, 148ms]
+  √  Status code is 200
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                 44 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                 44 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                  2 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │                 86 │                  0 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 8.4s                                          │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 67.51KB (approx)                             │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 126ms [min: 22ms, max: 657ms, s.d.: 121ms] │
+└───────────────────────────────────────────────────────────────────┘

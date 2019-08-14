@@ -1,0 +1,196 @@
+{
+    "collections": [
+        {
+            "id": "2711f853-7b70-4e3e-bf29-2efa72ab52ca",
+            "name": "CSP API 3.21.1",
+            "owner": "229020",
+            "uid": "229020-2711f853-7b70-4e3e-bf29-2efa72ab52ca"
+        },
+        {
+            "id": "378d7197-a567-4e94-bf24-a1fad2ec2a12",
+            "name": "CSP",
+            "owner": "229020",
+            "uid": "229020-378d7197-a567-4e94-bf24-a1fad2ec2a12"
+        },
+        {
+            "id": "92b68539-3aad-4a06-8199-b48e216cb11b",
+            "name": "CSP API 3.22",
+            "owner": "229020",
+            "uid": "229020-92b68539-3aad-4a06-8199-b48e216cb11b"
+        },
+        {
+            "id": "5a25173e-8e42-406c-b22a-04a71b11d3e6",
+            "name": "CareTeamIntegrationTests",
+            "owner": "312439",
+            "uid": "312439-5a25173e-8e42-406c-b22a-04a71b11d3e6"
+        },
+        {
+            "id": "9482b2fd-1b59-49ac-a903-a4eacbd5f631",
+            "name": "CareTeamCrossDomainTests",
+            "owner": "312439",
+            "uid": "312439-9482b2fd-1b59-49ac-a903-a4eacbd5f631"
+        },
+        {
+            "id": "a6f8c3f1-2b8d-486e-8f14-291d56f66395",
+            "name": "SmoothOpsApiTests",
+            "owner": "312439",
+            "uid": "312439-a6f8c3f1-2b8d-486e-8f14-291d56f66395"
+        },
+        {
+            "id": "85404de5-7378-475b-95d0-60d4776a198e",
+            "name": "Monitor",
+            "owner": "4213740",
+            "uid": "4213740-85404de5-7378-475b-95d0-60d4776a198e"
+        },
+        {
+            "id": "c1bf89a5-ca6b-4755-ada3-1e940ea8c734",
+            "name": "System API",
+            "owner": "4213740",
+            "uid": "4213740-c1bf89a5-ca6b-4755-ada3-1e940ea8c734"
+        },
+        {
+            "id": "ffdf7b4b-bcbb-44ec-b891-df7924a74022",
+            "name": "WUI - SSO",
+            "owner": "4525009",
+            "uid": "4525009-ffdf7b4b-bcbb-44ec-b891-df7924a74022"
+        },
+        {
+            "id": "186f12be-247e-47a6-9101-b25f3a7fd9e2",
+            "name": "CSP API (Refactoring)",
+            "owner": "4690258",
+            "uid": "4690258-186f12be-247e-47a6-9101-b25f3a7fd9e2"
+        },
+        {
+            "id": "28b70f76-ae11-4a29-980d-a52204a45dab",
+            "name": "CSP API 3.23",
+            "owner": "4690258",
+            "uid": "4690258-28b70f76-ae11-4a29-980d-a52204a45dab"
+        },
+        {
+            "id": "5acb5dcc-4465-4ea1-954a-82fb73055562",
+            "name": "MQTT",
+            "owner": "4690258",
+            "uid": "4690258-5acb5dcc-4465-4ea1-954a-82fb73055562"
+        },
+        {
+            "id": "62072fb5-6c4f-403a-9e44-470ebe9c6114",
+            "name": "CareTeam Admin API 2.1.6",
+            "owner": "4690258",
+            "uid": "4690258-62072fb5-6c4f-403a-9e44-470ebe9c6114"
+        },
+        {
+            "id": "6d0e44fa-cbd5-4fb2-860a-63f269b27042",
+            "name": "CareTeam Front End APIs 2.1.5",
+            "owner": "4690258",
+            "uid": "4690258-6d0e44fa-cbd5-4fb2-860a-63f269b27042"
+        },
+        {
+            "id": "81472f00-c197-48b9-9020-9d8495055ae1",
+            "name": "EMR Link",
+            "owner": "4690258",
+            "uid": "4690258-81472f00-c197-48b9-9020-9d8495055ae1"
+        },
+        {
+            "id": "9cfbc26a-8931-4838-bba0-5f22ef8c15a3",
+            "name": "Care Team API",
+            "owner": "4690258",
+            "uid": "4690258-9cfbc26a-8931-4838-bba0-5f22ef8c15a3"
+        },
+        {
+            "id": "a923c87c-3760-473c-892c-e7e1096d09c7",
+            "name": "CareTeam Front End APIs 2.1.6",
+            "owner": "4690258",
+            "uid": "4690258-a923c87c-3760-473c-892c-e7e1096d09c7"
+        },
+        {
+            "id": "ac0a63d3-f6ed-4b41-921e-2a3706751eb3",
+            "name": "CareTeam Admin API 2.1.5",
+            "owner": "4690258",
+            "uid": "4690258-ac0a63d3-f6ed-4b41-921e-2a3706751eb3"
+        },
+        {
+            "id": "f9fd6064-0e9f-4d1c-8cda-3e1b614e8aca",
+            "name": "Add/DeleteFacility Work",
+            "owner": "4690258",
+            "uid": "4690258-f9fd6064-0e9f-4d1c-8cda-3e1b614e8aca"
+        },
+        {
+            "id": "4bab333c-9d4b-42a4-b12c-aa52f2e1cfa8",
+            "name": "Practitioner API",
+            "owner": "6382182",
+            "uid": "6382182-4bab333c-9d4b-42a4-b12c-aa52f2e1cfa8"
+        },
+        {
+            "id": "598d221b-0c04-439e-a3e1-1726b857d81a",
+            "name": "ScheduleSync",
+            "owner": "6382182",
+            "uid": "6382182-598d221b-0c04-439e-a3e1-1726b857d81a"
+        },
+        {
+            "id": "5a155e3c-b110-4654-9712-ad8df16bead4",
+            "name": "Identity",
+            "owner": "6382182",
+            "uid": "6382182-5a155e3c-b110-4654-9712-ad8df16bead4"
+        },
+        {
+            "id": "13184b8f-e4d1-41b5-ae7d-a87a90df8174",
+            "name": "Mock",
+            "owner": "6382185",
+            "uid": "6382185-13184b8f-e4d1-41b5-ae7d-a87a90df8174"
+        },
+        {
+            "id": "18ee18b8-c6de-41fc-a826-da3db501d67c",
+            "name": "Assignments_Prototype",
+            "owner": "6382185",
+            "uid": "6382185-18ee18b8-c6de-41fc-a826-da3db501d67c"
+        },
+        {
+            "id": "2e49498f-a2d9-462e-866c-0309b84f33a0",
+            "name": "Alerts",
+            "owner": "6382185",
+            "uid": "6382185-2e49498f-a2d9-462e-866c-0309b84f33a0"
+        },
+        {
+            "id": "4569935e-6f5b-4807-87af-a7e854d3902f",
+            "name": "Messaging",
+            "owner": "6382185",
+            "uid": "6382185-4569935e-6f5b-4807-87af-a7e854d3902f"
+        },
+        {
+            "id": "49161306-6e3d-4101-8705-8fceb913a6e6",
+            "name": "Test Collect",
+            "owner": "6382185",
+            "uid": "6382185-49161306-6e3d-4101-8705-8fceb913a6e6"
+        },
+        {
+            "id": "491e5d61-0076-4bd8-908b-e7f0c982a96b",
+            "name": "Ps.CareTeam.WebApi v2.1.5",
+            "owner": "6382185",
+            "uid": "6382185-491e5d61-0076-4bd8-908b-e7f0c982a96b"
+        },
+        {
+            "id": "7aae8c2b-9d68-4a1a-8653-3adb6aff18ee",
+            "name": "Test",
+            "owner": "6382185",
+            "uid": "6382185-7aae8c2b-9d68-4a1a-8653-3adb6aff18ee"
+        },
+        {
+            "id": "98fb7662-0e38-4af0-8413-03c0b0ea7253",
+            "name": "Parallel Setup",
+            "owner": "6382185",
+            "uid": "6382185-98fb7662-0e38-4af0-8413-03c0b0ea7253"
+        },
+        {
+            "id": "ae91bca3-df8a-4abb-8d3e-96ddbc952787",
+            "name": "Assignments",
+            "owner": "6382185",
+            "uid": "6382185-ae91bca3-df8a-4abb-8d3e-96ddbc952787"
+        },
+        {
+            "id": "fde3a6f3-74d7-44fe-a586-8a9bb0410a4f",
+            "name": "Licensing",
+            "owner": "6382185",
+            "uid": "6382185-fde3a6f3-74d7-44fe-a586-8a9bb0410a4f"
+        }
+    ]
+}

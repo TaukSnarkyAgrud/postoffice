@@ -1,0 +1,229 @@
+{
+    "workspaces": [
+        {
+            "id": "002fa885-1283-4dac-9310-1408fb85fb4d",
+            "name": "PerfectServe Essentials",
+            "type": "team"
+        },
+        {
+            "id": "0333cbf1-2b5a-4a2a-84b4-7c34cccd1765",
+            "name": "Hema System API Tests",
+            "type": "team"
+        },
+        {
+            "id": "0a04a3c3-34dc-477d-9251-4d588af00b38",
+            "name": "LicenseService",
+            "type": "team"
+        },
+        {
+            "id": "0d332fff-3dca-408e-937e-4476138b116b",
+            "name": "Alerts MCR",
+            "type": "team"
+        },
+        {
+            "id": "0f206848-4732-4a41-8962-d3a09a0b4a0f",
+            "name": "Identity",
+            "type": "team"
+        },
+        {
+            "id": "11e3fad4-0c15-4bd7-9fe6-86cc059e8193",
+            "name": "WUI-SSO",
+            "type": "team"
+        },
+        {
+            "id": "1b19c2fc-1c52-49d1-8600-159c440b99d2",
+            "name": "ScheduleSync",
+            "type": "team"
+        },
+        {
+            "id": "25803507-4f09-439b-8d91-19a25fae2777",
+            "name": "Messaging",
+            "type": "team"
+        },
+        {
+            "id": "2f317536-baf4-4eb7-98f8-6171701874bd",
+            "name": "Accounts",
+            "type": "team"
+        },
+        {
+            "id": "2f70997c-06b1-4667-a3e6-fa0733660f7b",
+            "name": "Patient",
+            "type": "team"
+        },
+        {
+            "id": "4061db03-207b-4fa5-a7b5-10414f37d8cf",
+            "name": "Identity Atl Upgrade",
+            "type": "team"
+        },
+        {
+            "id": "42434199-9190-4e57-baa9-834d9cd7c54c",
+            "name": "CSP - AWB",
+            "type": "team"
+        },
+        {
+            "id": "4a244c15-6e33-41c2-b839-0b2e0e1bc58f",
+            "name": "Message Envy Cutover Testing",
+            "type": "team"
+        },
+        {
+            "id": "4d7d3887-8a43-421d-bde4-daa6d4b83be5",
+            "name": "Patient - Scissors",
+            "type": "team"
+        },
+        {
+            "id": "542df4b3-4526-4d45-85f1-d1594a9ac426",
+            "name": "careteam-webapi",
+            "type": "team"
+        },
+        {
+            "id": "6635f07b-6c62-48fc-b151-28ba314f4727",
+            "name": "Betsie Postman Attempts",
+            "type": "team"
+        },
+        {
+            "id": "66569688-1464-4afb-ad3e-329a75584438",
+            "name": "Practitioner API",
+            "type": "team"
+        },
+        {
+            "id": "66d4469e-a953-490e-a72d-9caee8a0c01d",
+            "name": "Platform User- AWB",
+            "type": "team"
+        },
+        {
+            "id": "74a43c6d-dc97-439b-9e40-2933fd671363",
+            "name": "Call Recording",
+            "type": "team"
+        },
+        {
+            "id": "76421343-9f7d-4699-8d84-c07d9eba7299",
+            "name": "UPN change - BJC",
+            "type": "team"
+        },
+        {
+            "id": "7a8767da-4718-400b-8863-99d1704440dd",
+            "name": "Yorktel POC",
+            "type": "team"
+        },
+        {
+            "id": "7cadca90-8b8f-46f0-bed5-7c79cf1c664c",
+            "name": "CTC Integrations",
+            "type": "team"
+        },
+        {
+            "id": "85a90ad5-172b-4bc5-91a1-1961d1b3113f",
+            "name": "careteam-mobile",
+            "type": "team"
+        },
+        {
+            "id": "8fb11525-301a-4dc0-8af3-53f4e27747af",
+            "name": "CTC",
+            "type": "team"
+        },
+        {
+            "id": "8ffa0b12-a7e1-4c7b-bfca-439c536f2024",
+            "name": "IntroductionATA",
+            "type": "personal"
+        },
+        {
+            "id": "90c45c58-b1ba-47e4-8c5d-ab99107cfbef",
+            "name": "Facility- AWB",
+            "type": "team"
+        },
+        {
+            "id": "922f3579-3973-44ce-ac78-934c3c339270",
+            "name": "careteam-admin",
+            "type": "team"
+        },
+        {
+            "id": "97e89d63-3a04-4dba-a6ed-19c54793f166",
+            "name": "User Provisioning",
+            "type": "team"
+        },
+        {
+            "id": "9c8042db-1794-428e-9491-921cb2276b86",
+            "name": "CareTeam API Automation",
+            "type": "team"
+        },
+        {
+            "id": "9e6c2f00-5dea-4912-87bc-678affac33c7",
+            "name": "Hatchet API",
+            "type": "team"
+        },
+        {
+            "id": "a6876af7-c405-4bc9-9729-b88b54e307c9",
+            "name": "Emr Integration Api",
+            "type": "team"
+        },
+        {
+            "id": "b8cf8c7e-6dac-42e8-839b-1518aab74f9a",
+            "name": "TinCans.Web API 2.1.2",
+            "type": "team"
+        },
+        {
+            "id": "b93ebca0-6431-4fb3-b527-8e0e1d30db71",
+            "name": "SmoothOps Integration Tests",
+            "type": "team"
+        },
+        {
+            "id": "bf2adb9c-f502-4291-8505-bb616fcd3325",
+            "name": "My Workspace",
+            "type": "personal"
+        },
+        {
+            "id": "c49f3471-4a65-4402-9a1a-9fe55b21547a",
+            "name": "Maintenance Page",
+            "type": "team"
+        },
+        {
+            "id": "c9a9c33f-5767-4afa-ba25-f79382d9b408",
+            "name": "Demo API",
+            "type": "team"
+        },
+        {
+            "id": "caf62137-5a8e-4f9b-aaf7-94294c2bdec6",
+            "name": "Alerts",
+            "type": "team"
+        },
+        {
+            "id": "d58ef7e7-c2a6-4799-822a-d50b7b377f5b",
+            "name": "Team Workspace",
+            "type": "team"
+        },
+        {
+            "id": "dc8b188c-4784-4ae9-9eec-d65f0c19b8c7",
+            "name": "Patient - BTM",
+            "type": "team"
+        },
+        {
+            "id": "ded3f5a3-edb0-4142-b41e-e03a57114943",
+            "name": "CaTNiP - Smooth Operators",
+            "type": "team"
+        },
+        {
+            "id": "e4322ef4-f142-4a5f-a783-ea03d2338b90",
+            "name": "Privileges- AWB",
+            "type": "team"
+        },
+        {
+            "id": "f6783efe-48d5-4f51-9041-a71e762fff4b",
+            "name": "Notify",
+            "type": "team"
+        },
+        {
+            "id": "f819915c-73ba-4b70-b8d8-af062894714f",
+            "name": "CaTNiP - Message Envy",
+            "type": "team"
+        },
+        {
+            "id": "fbc3d67a-9ea0-4313-a257-065daf644526",
+            "name": "EntityMap",
+            "type": "team"
+        },
+        {
+            "id": "fe8b8ff3-ce8e-4831-9341-015d3b8374f0",
+            "name": "System Api ",
+            "type": "team"
+        }
+    ]
+}
